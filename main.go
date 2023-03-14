@@ -13,8 +13,8 @@ import (
 func queryState() error {
 	// Create a connection to the gRPC server.
 	grpcConn, err := grpc.Dial(
-		"34.148.39.82:9090", // your gRPC server address.
-		grpc.WithInsecure(), // The Cosmos SDK doesn't support any transport security mechanism.
+		"35.223.43.127:9090", // your gRPC server address.
+		grpc.WithInsecure(),  // The Cosmos SDK doesn't support any transport security mechanism.
 		// This instantiates a general gRPC codec which handles proto bytes. We pass in a nil interface registry
 		// if the request/response types contain interface instead of 'nil' you should pass the application specific codec.
 		grpc.WithDefaultCallOptions(grpc.ForceCodec(codec.NewProtoCodec(nil).GRPCCodec())),
@@ -28,7 +28,7 @@ func queryState() error {
 	bankClient := banktypes.NewQueryClient(grpcConn)
 	bankRes, err := bankClient.Balance(
 		context.Background(),
-		&banktypes.QueryBalanceRequest{Address: "tp16h2lejnpjapaawgyquqhvr6x9wzmmyzjw87huz", Denom: "nhash"}, //assumes prov testnet address
+		&banktypes.QueryBalanceRequest{Address: "tp16p0m4fpm5hm3hvtlcxal44ua829mef88ecys7j", Denom: "vspn"}, //assumes prov testnet address
 	)
 	if err != nil {
 		return err
